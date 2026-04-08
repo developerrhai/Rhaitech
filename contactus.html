@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us | RHAI Technology</title>
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= BODY ================= */
+body{
+  font-family:'Roboto', Arial, sans-serif;
+  min-height:100vh;
+  background:#03143e;
+  color:#1e293b;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ================= HEADER ================= */
+header.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 24px;
+  background:#0f172a;
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+header .logo{
+  font-size:1.5rem;
+  font-weight:bold;
+}
+
+header .logo span{
+  color:#38bdf8;
+}
+
+header .nav-links a{
+  color:#fff;
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:500;
+}
+
+header .nav-links a:hover{
+  text-decoration:underline;
+}
+
+/* ================= CONTAINER ================= */
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  padding:0 20px;
+  flex:1;
+}
+
+/* ================= PAGE TITLE ================= */
+.container h2{
+  color:#f4f5f9;
+  margin-bottom:10px;
+}
+
+.container p.subtitle{
+  color:#e8ebee;
+  margin-bottom:30px;
+}
+
+/* ================= GRID ================= */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+/* ================= CARD ================= */
+.card{
+  background:#babcc4;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+
+/* ================= FORM ================= */
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #cbd5e1;
+  font-size:14px;
+}
+
+.form-group textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  outline:none;
+  border-color:#38bdf8;
+}
+
+button.submit-btn{
+  margin-top:10px;
+  padding:12px 20px;
+  border:none;
+  border-radius:6px;
+  background:#38bdf8;
+  color:#020617;
+  font-weight:700;
+  cursor:pointer;
+}
+
+button.submit-btn:hover{
+  background:#0ea5e9;
+}
+
+/* ================= CONTACT INFO ================= */
+.info-item{
+  margin-bottom:15px;
+}
+
+.info-item b{
+  color:#020617;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+  background:#020617;
+  color:#fff;
+  padding:50px 8% 20px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:30px;
+}
+
+.footer h3,
+.footer h4{
+  margin-bottom:12px;
+}
+
+.footer-links ul{
+  list-style:none;
+}
+
+.footer-links li{
+  margin-bottom:8px;
+}
+
+.footer-links a{
+  color:#7dd3fc;
+  font-size:14px;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:14px;
+  border-top:1px solid rgba(255,255,255,.2);
+  padding-top:15px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  header .nav-links{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">RHAI<span>Tech</span></div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#solutions">Solutions</a>
+    <a href="index.html#about">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<section class="container">
+  <h2>Contact RHAI Technology</h2>
+  <p class="subtitle">
+    Let’s build intelligent AI, LLM & software solutions together.
+  </p>
+
+  <div class="contact-grid">
+
+    <!-- CONTACT FORM -->
+    <div class="card">
+      <form onsubmit="submitContact(event)">
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>You are a</label>
+          <select id="role" required>
+            <option value="">Select</option>
+            <option value="Startup Founder">Startup Founder</option>
+            <option value="Business Owner">Business Owner</option>
+            <option value="Developer">Developer</option>
+            <option value="Enterprise">Enterprise</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" id="subject" required>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="message" required></textarea>
+        </div>
+
+        <button class="submit-btn" type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- CONTACT DETAILS -->
+    <div class="card">
+      <div class="info-item">
+        <b>Email</b><br>
+        support@rhaitech.online
+      </div>
+
+      <div class="info-item">
+        <b>Phone / WhatsApp</b><br>
+        +91 82610 50815
+      </div>
+
+      <div class="info-item">
+        <b>Address</b><br>
+        Pune, Maharashtra, India
+      </div>
+
+      <div class="info-item">
+        <b>Support Hours</b><br>
+        Mon – Sun : 9:00 AM – 9:00 PM
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    
+    <div class="footer-brand">
+      <h2 class="logo">RHAI<span>Tech</span></h2>
+      <p>
+        Powered by ReadyHand Artificial Intelligence.<br>
+        Smart AI, LLM & Software Solutions for the Future.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="#services">Services</a>
+      <a href="#solutions">Solutions</a>
+      <a href="aboutus.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-legal">
+      <h4>Legal</h4>
+      <a href="privacy.html" target="_blank">Privacy Policy</a>
+      <a href="terms.html" target="_blank">Terms & Conditions</a>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>Email: support@rhaitech.com</p>
+      <p>Phone: +91 8261050815</p>
+      <p>Location: Pune, India</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 RHAI Technology | ReadyHand Artificial Intelligence</p>
+  </div>
+</footer>
+
+<script>
+function submitContact(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const role = document.getElementById("role").value;
+  const subject = document.getElementById("subject").value;
+  const message = document.getElementById("message").value;
+
+  const phone = "918261050815";
+
+  const text =
+`Hello RHAI Technology 👋
+
+Name: ${name}
+Email: ${email}
+Role: ${role}
+
+Subject: ${subject}
+
+Message:
+${message}`;
+
+  const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+  window.open(url, "_blank");
+
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
+<style>
+/* ================= FOOTER ================= */
+.footer {
+  background: #111827;
+  color: #fff;
+  padding: 50px 8%;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Footer Branding */
+.footer-brand .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Footer Links & Legal */
+.footer-links, 
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links h4,
+.footer-legal h4,
+.footer-contact h4 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.footer-links a,
+.footer-legal a {
+  color: #c7d2fe;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover,
+.footer-legal a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Footer Contact */
+.footer-contact p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #c7d2fe;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+</style>

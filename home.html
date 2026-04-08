@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCRM – Enterprise Institute Platform</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+
+body{
+background:linear-gradient(-45deg,#020617,#0f172a,#111827,#0b1120);
+background-size:400% 400%;
+animation:gradientMove 15s ease infinite;
+color:white;
+scroll-behavior:smooth;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+position:fixed;
+width:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(15px);
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo{
+font-size:26px;
+font-weight:800;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#38bdf8;
+}
+
+.btn{
+padding:10px 22px;
+border-radius:10px;
+border:none;
+cursor:pointer;
+font-weight:600;
+background:linear-gradient(135deg,#2563eb,#0ea5e9);
+color:white;
+transition:.4s;
+}
+
+.btn:hover{
+transform:translateY(-3px) scale(1.05);
+box-shadow:0 10px 25px rgba(14,165,233,.4);
+}
+
+/* HERO */
+.hero{
+padding:140px 8% 100px;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+align-items:center;
+gap:60px;
+}
+
+.hero h1{
+font-size:54px;
+line-height:1.2;
+margin-bottom:20px;
+}
+
+.hero span{
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+color:#cbd5f5;
+font-size:18px;
+margin-bottom:25px;
+}
+
+.dashboard-preview{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 40px rgba(56,189,248,.2);
+animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+.stat-box{
+display:flex;
+justify-content:space-between;
+margin-top:20px;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h3{
+font-size:26px;
+color:#38bdf8;
+}
+
+/* SECTIONS */
+.section{
+padding:100px 8%;
+text-align:center;
+}
+
+.section h2{
+font-size:40px;
+margin-bottom:60px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:20px;
+transition:.4s;
+border:1px solid rgba(255,255,255,0.08);
+transform:translateY(50px);
+opacity:0;
+}
+
+.card.visible{
+transform:translateY(0);
+opacity:1;
+}
+
+.card:hover{
+transform:translateY(-12px);
+box-shadow:0 20px 40px rgba(56,189,248,.3);
+border-color:#38bdf8;
+}
+
+.card h3{
+margin-bottom:15px;
+color:#38bdf8;
+}
+
+/* CTA */
+.cta{
+padding:100px 8%;
+text-align:center;
+background:linear-gradient(135deg,#1d4ed8,#0ea5e9);
+border-radius:30px;
+margin:100px 8%;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#94a3b8;
+margin-top:80px;
+}
+
+/* CHAT */
+#chatWidget{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:linear-gradient(135deg,#22c55e,#38bdf8);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 0 20px rgba(34,197,94,.5);
+z-index:9999;
+}
+
+#chatBox{
+display:none;
+position:fixed;
+bottom:90px;
+right:20px;
+width:300px;
+background:#0f172a;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 30px rgba(56,189,248,.3);
+z-index:9999;
+}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;text-align:center}
+nav ul{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">SmartCRM</div>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#analytics">Analytics</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div>
+<a href="management/crmlogin.html"><button class="btn">Login</button></a>
+<a href="management/crmregister.html"><button class="btn" style="background:linear-gradient(135deg,#22c55e,#16a34a)">Register</button></a>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+<h1>Enterprise Grade <span>Institute CRM</span></h1>
+<p>AI-powered automation for Institutes, Training Centers & Enterprises.</p>
+<button class="btn">Start Free Trial</button>
+</div>
+
+<div class="dashboard-preview">
+<h3>Live Dashboard</h3>
+<div class="stat-box">
+<div class="stat"><h3 id="studentsCount">0</h3><p>Students</p></div>
+<div class="stat"><h3 id="teachersCount">0</h3><p>Teachers</p></div>
+<div class="stat"><h3 id="attendanceRate">0%</h3><p>Attendance</p></div>
+</div>
+<canvas id="miniChart" height="90"></canvas>
+<div id="liveTicker" style="margin-top:15px;color:#22c55e;font-size:13px"></div>
+</div>
+</section>
+
+<section class="section" id="features">
+<h2>Powerful CRM Modules</h2>
+<div class="grid">
+<div class="card"><h3>Live Classroom</h3><p>HD Sessions & Smart Attendance.</p></div>
+<div class="card"><h3>AI Analytics</h3><p>Performance scoring & insights.</p></div>
+<div class="card"><h3>Task Engine</h3><p>Auto grading & evaluation.</p></div>
+<div class="card"><h3>Automation</h3><p>Leads & workflow management.</p></div>
+</div>
+</section>
+
+<section class="section" id="analytics">
+<h2>Customer Analytics</h2>
+<div class="grid">
+<div class="card"><canvas id="lineChart" height="150"></canvas></div>
+<div class="card"><canvas id="barChart" height="150"></canvas></div>
+</div>
+</section>
+
+<div class="cta">
+<h2>Transform Your Institute Digitally</h2>
+<button class="btn">Create Free Account</button>
+</div>
+
+<footer>
+© 2026 SmartCRM Enterprise Platform
+</footer>
+
+<div id="chatWidget">💬</div>
+<div id="chatBox">
+<h4 style="color:#38bdf8">SmartCRM AI</h4>
+<p id="chatReply">Hi 👋 How can we help?</p>
+<input id="chatInput" placeholder="Type message..." style="width:100%;margin-top:10px;padding:8px;border-radius:8px;border:none;">
+</div>
+
+<script>
+
+/* COUNTERS */
+function animateValue(id,start,end,duration){
+let obj=document.getElementById(id);
+let range=end-start;
+let current=start;
+let increment=1;
+let stepTime=Math.abs(Math.floor(duration/range));
+let timer=setInterval(()=>{
+current+=increment;
+obj.textContent=current+(id==="attendanceRate"?"%":"");
+if(current>=end)clearInterval(timer);
+},stepTime);
+}
+animateValue("studentsCount",0,1250,2000);
+animateValue("teachersCount",0,85,2000);
+animateValue("attendanceRate",0,94,2000);
+
+/* MINI CHART */
+new Chart(document.getElementById('miniChart'),{
+type:'line',
+data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],
+datasets:[{data:[300,500,700,900,1100,1250],
+borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,0.2)',fill:true,tension:0.4}]},
+options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}
+});
+
+/* ANALYTICS CHARTS */
+new Chart(document.getElementById('lineChart'),{
+type:'line',
+data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],
+datasets:[{data:[300,500,700,900,1100,1250],
+borderColor:'#38bdf8',backgroundColor:'rgba(56,189,248,0.2)',fill:true}]},
+options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'white'}},y:{ticks:{color:'white'}}}}
+});
+
+new Chart(document.getElementById('barChart'),{
+type:'bar',
+data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],
+datasets:[{data:[40000,55000,70000,85000,95000,120000],
+backgroundColor:'#22c55e'}]},
+options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'white'}},y:{ticks:{color:'white'}}}}
+});
+
+/* TICKER */
+let updates=["New student registered","Live class started","Payment received","New enquiry"];
+setInterval(()=>{
+document.getElementById("liveTicker").innerText="🔔 "+updates[Math.floor(Math.random()*updates.length)];
+},3000);
+
+/* CHAT */
+chatWidget.onclick=()=>{
+chatBox.style.display=chatBox.style.display==="none"?"block":"none";
+};
+chatInput.addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+chatReply.innerText="Our team will contact you shortly.";
+this.value="";
+}
+});
+
+/* SCROLL ANIMATION */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+});
+document.querySelectorAll(".card").forEach(card=>observer.observe(card));
+
+</script>
+
+</body>
+</html>
